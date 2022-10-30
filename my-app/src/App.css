@@ -1,0 +1,326 @@
+/* CSS For the main root component (App.js) */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.Whole-display {
+  height: 100vh;
+  width: 100vw;
+  background-color: #1c2541;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fixed-window {
+  height: 100vh;
+  width: 80vw;
+  background-color:#d4ebf2 ;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.fixed-window div {
+  border-radius: 2vh;
+}
+
+.partition {
+  /* position: relative; */
+  height: 90%;
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: .3vw;
+}
+
+.partition div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* border-style: none; */
+  /* border-width:  .3vw; */
+  background-color: #5bc0be;
+}
+
+/* Blocks inside the fixed window */
+
+#partition-board,#partition-buttons,#partition-score-board {
+    box-shadow: .3vw .3vw .8vw rgba(0, 0, 0, 0.747);
+}
+/* ************************************************************************************** */
+#partition-board {
+    grid-row: 1/4;
+    grid-column: 1/3;
+    display: flex;  
+}
+
+#partition-buttons {
+    grid-row: 1/3;
+    grid-column: 3/4;
+}
+
+#partition-score-board {
+  grid-row: 3/4;
+  grid-column: 3/3;
+  display: flex;
+  align-items: center;
+}
+
+#partition-score-board div {
+  cursor: pointer;
+  color: white;
+  border-style: groove;
+  background-color: #1c2541;
+  padding: 0px 10px;
+
+}
+
+/* Scroll down window */
+
+.scroll-down-window{
+  height: 100vh;
+  width: 20vw;
+  background-color: #2e5165;
+  box-shadow: .2vw .4vw .7vw rgba(0, 0, 0, 0.747);
+  overflow: hidden;
+  overflow-y: scroll;
+  /* display: flex; */
+  /* justify-content: center; */
+}
+/*********************************************************************************************************************/
+#board-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  height: 85vh;
+  width: 85vh;
+  gap: .1vh;
+}
+
+/********************************************************************************************************************/
+/* Partition-board .css*/
+/********************************************************************************************************************/
+#board-grid .cell-grid:nth-child(odd) {
+  background-color: rgb(178, 207, 207);
+  border-style: solid;
+  border-width:1px ;
+  border-color:rgba(0, 0, 0, 0.596);
+}
+
+#board-grid .cell-grid:nth-child(even) {
+  background-color: rgb(18, 160, 160);
+  border-style: solid;
+  border-width:1px ;
+  border-color:rgba(0, 0, 0, 0.596);
+}
+
+#board-grid .cell-grid {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#board-grid .cell-grid {
+  height: 98%;
+  width: 98%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: .5fr 1fr .5fr;
+}
+
+#board-grid .cell-grid div {
+  font-size: 10px;
+  border-style: none;
+  background-color: rgba(240, 248, 255, 0);
+}
+
+.cell-grid {
+  border-style: none;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.747);
+}
+
+.cell-grid div {
+  background-color: rgb(183, 112, 245);
+}
+
+.icon-placeholder {
+  grid-column: 1/3;
+  grid-row: 1;
+  font-size: 5px;
+}
+
+.cell-number {
+  grid-column: 1/3;
+  grid-row: 2;
+}
+
+.snake-ladder-icon {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.to-place-value {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+/********************************************************************************************************************/
+/* Partition-buttons.css*/
+/********************************************************************************************************************/
+
+#partition-buttons {
+  grid-row: 1/3;
+  grid-column: 3/4;
+  display: block;
+}
+
+.top-right {
+  margin: .5em .5em;
+  border-style: solid;
+  border-radius: .5em;
+}
+
+
+#imageOfGame {
+  margin: 0;
+  border-style: none;
+  background: color 0;
+  background-image: url('../src/resources/images/poster-removebg-preview.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+  margin-top: 10px;
+  margin-left: 60px;
+
+}
+
+#dice-image {
+  justify-content: center;
+  align-items: center;
+  height: 10.5em;
+  border-style: none;
+}
+
+#start-button,
+#refresh-button,
+#show-name,
+#points-board {
+    height: 1.8em;
+    cursor: pointer;
+    color: white;
+    border-style: groove;
+    border-width:1px ;
+    background-color: #1c2541;
+    justify-content: center;
+}
+#points-board {
+  font-size:35px;
+}
+
+#start-button:hover,
+#refresh-button:hover {
+    background-color: #1c2541b7;
+}
+
+#refresh-button:hover {
+    margin-top: -1px;
+}
+
+/**********************************************************************************/
+/*partition-scoreBoard*/
+/**********************************************************************************/
+
+.scoreOne{
+  height: 23vh;
+  width: 100%;
+  color: white;
+  font-size: 50px;
+  margin: 0px 5px;
+  display: flex;
+  flex-direction: column;
+  border-width:1px ;
+}
+
+#player-name{
+  background-color: #d4ebf2;
+  width: 98%;
+  height: 20%;
+  border-radius: 10px 10px 0px 0px;
+}
+#player-one-score{
+  background-color: #18abd8;
+  width: 98%;
+  height: 60%;
+  border-radius: 0px 0px 10px 10px;
+  font-size: 50px;
+}
+
+#player-name,#player-one-score{
+  border-style: groove;
+  border-width: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+/**********************************************************************************/
+/*Scroll down window.css*/
+/**********************************************************************************/
+
+
+#tag{
+  height: 30px;
+  width: 96%;
+  margin-top: 5px;
+  background-color: #5bc0be;
+  border-radius: 5px;
+  border-style: none;
+  border-color:#1c2541d2;
+  box-shadow: 2px 2px 5px;
+  display:flex;
+  justify-content:space-evenly;
+  align-items: center;
+  margin-left: 5px;
+}
+
+#tag div{
+  margin-left: 10;
+  display:flex;
+  justify-content: space-between;
+
+}
+/* #tag-move,#tag-player,#tag-diceGot,#tag-position{
+  /* display: inline-flexbox; */
+/* }  */
+
+
+/* #tag-move{
+
+}
+#tag-player{
+
+}
+#tag-diceGot{
+
+}
+#tag-incDec{
+
+}
+#tag-position{
+
+} */
