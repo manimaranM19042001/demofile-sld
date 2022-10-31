@@ -1,28 +1,29 @@
 import React, { FC, useState } from "react";
 import '../styles/alertComponent.css';
-import audio from "../resources/audio/A.mp3"
 
 interface IAlertWIndow {
-    myfunc: Function,
+    setInputForm: Function,
+    text?: string,
+    setShow:Function,
+    show:boolean,
 }
 
-export const AlertWindow: FC<IAlertWIndow> = ({ myfunc }) => {
-    const [showHide, setShoeHide] = useState<boolean>(true)
+export const AlertWindow: FC<IAlertWIndow> = ({ setInputForm, text,setShow,show }) => {
 
-    function call(){
-        new Audio(audio).play()
-        myfunc(false)
+    function handleClick(){
+        setShow(!show)
+        setInputForm(true)
     }
-
-
     return (
         <>
-            <div className="main" >
-                <div className="square" >
-                    <div className="circle" onClick={call}>X</div>
-                    Only four players can play !!!
+            {show && (
+                <div className="main" >
+                    <div className="square" >
+                        <div className="circle" onClick={handleClick}>X</div>
+                        {text}
+                    </div>
                 </div>
-            </div>
+            )}
         </>
     )
 }

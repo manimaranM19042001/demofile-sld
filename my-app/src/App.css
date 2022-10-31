@@ -304,9 +304,9 @@
   justify-content: space-between;
 
 }
-/* #tag-move,#tag-player,#tag-diceGot,#tag-position{
-  /* display: inline-flexbox; */
-/* }  */
+#tag-move,#tag-player,#tag-diceGot,#tag-position{
+  color:white;
+} 
 
 
 /* #tag-move{

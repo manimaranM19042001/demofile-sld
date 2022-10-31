@@ -5,16 +5,22 @@ import { CellData } from './game_data/gameData';
 import ScrollDownWindow from './components/scroll_down_window'
 import Cell from './components/board_cell'
 import InputWindow from './components/input_form';
+import audio from '../src/resources/audio/winner.mp3'
+import { AlertWindow } from './components/alertComponent';
+import { WinnerPopUp } from './components/winnerPopUp';
 
 const App: FC = () => {
 
   // visibitlity states
+  const [show, setShow] = useState<boolean>(false)
+  const [text,setText] = useState<string>('')
+  const [end,setEnd] = useState<boolean>(false)
 
   const [showGrid, setShowGrid] = useState<boolean>(false)
   const [inputForm, setInputForm] = useState<boolean>(true)
 
   // state for setting the winner
-  
+
   const [winner, setWinner] = useState({
     name: 'SNAKE AND LADDER',
     icon: '🏆',
@@ -39,6 +45,8 @@ const App: FC = () => {
     let random = Math.ceil(Math.random() * 6)     // generate a random number between (1-6)
     setRandomNumber(random)   // set the number in the randomNumber state variable
     setCurrentPlayer(listOfPlayers[count].name + `  '${listOfPlayers[count].icon}'`)  // setting player sequentially
+
+    let winnerAudio: any = new Audio(audio)
 
     let newArray = listOfPlayers
 
@@ -69,8 +77,9 @@ const App: FC = () => {
         name: listOfPlayers[count].name,
         icon: listOfPlayers[count].icon,
       })
-      alert(`The winner is ${listOfPlayers[count].icon}`)
-      window.location.reload()
+
+      winnerAudio.play()
+      setEnd(true)
     }
 
     setCellData(cellData)
@@ -91,8 +100,12 @@ const App: FC = () => {
 
   return (
     <>
+  
       <div className='Whole-display' >
-        {inputForm && <InputWindow makeGridVisible={makeGridVisible} setInputForm={setInputForm} sentData={bringData} />}
+        {show && <AlertWindow setInputForm={setInputForm} text={text} setShow={setShow} show={show} />}
+        
+        {end && <WinnerPopUp icon ={listOfPlayers[count].icon} name = {listOfPlayers[count].name} setEnd = {setEnd}/>}
+        {inputForm && <InputWindow makeGridVisible={makeGridVisible} setInputForm={setInputForm} sentData={bringData} setShow={setShow} show={show} setText ={setText}/>}
 
         {
           showGrid && (
@@ -139,8 +152,12 @@ const App: FC = () => {
 
               <div className='scroll-down-window'>
                 {history.map((ele: IHistory, index: number) => {
+                  let inOrDec: string;
+
+                  index !== 0 ? (ele.position > history[index - 1].position ? inOrDec = '⬆' : inOrDec = '⬇') : (inOrDec = '⬆') // setting increment decrement symbols
+
                   return (
-                    <ScrollDownWindow dataObject={ele} index={index} key={index} />
+                    <ScrollDownWindow dataObject={ele} index={index} key={index} inOrDec={inOrDec} />
                   )
                 })}
               </div>
