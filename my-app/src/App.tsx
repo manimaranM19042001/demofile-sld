@@ -154,7 +154,7 @@ const App: FC = () => {
                 {history.map((ele: IHistory, index: number) => {
                   let inOrDec: string;
 
-                  index !== 0 ? (ele.position > history[index - 1].position ? inOrDec = '⬆' : inOrDec = '⬇') : (inOrDec = '⬆') // setting increment decrement symbols
+                  index > playersOrder ? (ele.position > history[index - (playersOrder)].position ? inOrDec = '⬆' : inOrDec = '⬇') : (inOrDec = '⬆') // setting increment decrement symbols
 
                   return (
                     <ScrollDownWindow dataObject={ele} index={index} key={index} inOrDec={inOrDec} />
