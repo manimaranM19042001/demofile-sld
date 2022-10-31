@@ -10,7 +10,7 @@ interface IProps {
 
 const ScrollDownWindow = ({ dataObject, index, inOrDec }: IProps) => {
     return (
-        <div id='tag' style={{ backgroundColor: inOrDec === "⬆" ? '#5cff5cce' : '#fc5050d2' }}>
+        <div id='tag' style={{backgroundColor: inOrDec === "⏳" ? '#6577B3' : (inOrDec === "⬆" ? '#5cff5cce' : '#fc5050d2') }}>
             <div id='tag-move'>{index + 1}</div>
             <div id='tag-player'>{dataObject.icon}</div>
             <div id='tag-diceGot'>{dataObject.random}</div>

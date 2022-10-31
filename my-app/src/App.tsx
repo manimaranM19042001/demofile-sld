@@ -13,8 +13,8 @@ const App: FC = () => {
 
   // visibitlity states
   const [show, setShow] = useState<boolean>(false)
-  const [text,setText] = useState<string>('')
-  const [end,setEnd] = useState<boolean>(false)
+  const [text, setText] = useState<string>('')
+  const [end, setEnd] = useState<boolean>(false)
 
   const [showGrid, setShowGrid] = useState<boolean>(false)
   const [inputForm, setInputForm] = useState<boolean>(true)
@@ -100,12 +100,12 @@ const App: FC = () => {
 
   return (
     <>
-  
+
       <div className='Whole-display' >
         {show && <AlertWindow setInputForm={setInputForm} text={text} setShow={setShow} show={show} />}
-        
-        {end && <WinnerPopUp icon ={listOfPlayers[count].icon} name = {listOfPlayers[count].name} setEnd = {setEnd}/>}
-        {inputForm && <InputWindow makeGridVisible={makeGridVisible} setInputForm={setInputForm} sentData={bringData} setShow={setShow} show={show} setText ={setText}/>}
+
+        {end && <WinnerPopUp icon={listOfPlayers[count - 1].icon} name={listOfPlayers[count - 1].name} setEnd={setEnd} />}
+        {inputForm && <InputWindow makeGridVisible={makeGridVisible} setInputForm={setInputForm} sentData={bringData} setShow={setShow} show={show} setText={setText} />}
 
         {
           showGrid && (
@@ -151,18 +151,26 @@ const App: FC = () => {
               </div>
 
               <div className='scroll-down-window'>
+                <div id='tag' style={{ backgroundColor: '#eed970', height: '7vh',display:'flex',justifyContent:'space-around'}}>
+                  <div id='tag-move'>🔢</div>
+                  <div id='tag-player'>📛</div>
+                  <div id='tag-diceGot'>🎲</div>
+                  <div id='tag-position'>🪑</div>
+                  <div>🔃</div>
+                </div>
                 {history.map((ele: IHistory, index: number) => {
                   let inOrDec: string;
 
-                  index !== 0 ? (ele.position > history[index - 1].position ? inOrDec = '⬆' : inOrDec = '⬇') : (inOrDec = '⬆') // setting increment decrement symbols
+                  index > playersOrder ? (ele.position === history[index - (playersOrder)].position ? inOrDec = '⏳' : (ele.position > history[index - (playersOrder)].position ? inOrDec = '⬆' : inOrDec = '⬇')) : (inOrDec = '⬆') // setting increment decrement symbols
 
                   return (
-                    <ScrollDownWindow dataObject={ele} index={index} key={index} inOrDec={inOrDec} />
+                    <>
+                      <ScrollDownWindow dataObject={ele} index={index} key={index} inOrDec={inOrDec} />
+                    </>
                   )
                 })}
               </div>
             </>
-
           )}
       </div>
     </>
