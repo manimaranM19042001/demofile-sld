@@ -73,6 +73,7 @@ const App: FC = () => {
     // show the winner
 
     if (newArray[count].position === 100) {
+      console.log(count)
       setWinner({
         name: listOfPlayers[count].name,
         icon: listOfPlayers[count].icon,
@@ -104,7 +105,7 @@ const App: FC = () => {
       <div className='Whole-display' >
         {show && <AlertWindow setInputForm={setInputForm} text={text} setShow={setShow} show={show} />}
 
-        {end && <WinnerPopUp icon={listOfPlayers[count - 1].icon} name={listOfPlayers[count - 1].name} setEnd={setEnd} />}
+        {end && <WinnerPopUp icon={winner.icon} name={winner.name} setEnd={setEnd} />}
         {inputForm && <InputWindow makeGridVisible={makeGridVisible} setInputForm={setInputForm} sentData={bringData} setShow={setShow} show={show} setText={setText} />}
 
         {
